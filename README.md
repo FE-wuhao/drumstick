@@ -47,3 +47,42 @@
    * sass可以通过@import导入scss或者sass文件
    * 在真实的运行环境中不会多次请求导入的scss/sass文件，在编译阶段就会把它们编译到一个css文件中去
    * 对于不希望被编译的sass/scss文件，在文件名前面加上一个下划线，如**_a.scss**,即可实现sass的partials功能，编译器会跳过该文件的编译。在其他文件中对**_a.scss**进行@import时需要去除前面的下划线，即`@import a.scss`,并且在编译阶段会被一起编译到引入a文件的文件中去
+   
+7. classnames库的使用
+
+   * 作用：动态生成class名
+
+   * 使用方式：传入键值对，值是boolean类型，true表示生成，false表示不生成
+
+   * 用例：
+
+     * 根据变量的存在与否动态创建类名`btn-变量名`：
+
+       ```ts
+       classNames({ [`btn-${buttonType}`]: buttonType});
+       ```
+
+       
+
+     * 传入数组：
+
+       ```ts
+       var arr = ['b', { c: true, d: false }];
+       classNames('a', arr); // => 'a b c'
+       ```
+
+     * classNames('foo', 'bar'); // => 'foo bar'
+
+     * classNames('foo', { bar: true }); // => 'foo bar'
+
+     * classNames({ 'foo-bar': true }); // => 'foo-bar'
+
+     * classNames({ 'foo-bar': false }); // => ''
+
+     * classNames({ foo: true }, { bar: true }); // => 'foo bar'
+
+     * classNames({ foo: true, bar: true }); // => 'foo bar'
+
+     * classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'
+
+     * classNames(null, false, 'bar', undefined, 0, 1, { baz: null }, ''); // => 'bar 1'
