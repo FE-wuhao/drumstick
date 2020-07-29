@@ -2,6 +2,8 @@
 @import './variables';
 // 基础元素样式的一致化处理
 @import './reboot';
+// mixin
+@import './mixin';
 // Button样式
 // TODO:这里的路径alias一定要搞出来 2020/7/29 15:28
-@import '../components/Button/index'
+@import '../components/Button/index';
