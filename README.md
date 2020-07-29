@@ -47,7 +47,7 @@
    * sass可以通过@import导入scss或者sass文件
    * 在真实的运行环境中不会多次请求导入的scss/sass文件，在编译阶段就会把它们编译到一个css文件中去
    * 对于不希望被编译的sass/scss文件，在文件名前面加上一个下划线，如**_a.scss**,即可实现sass的partials功能，编译器会跳过该文件的编译。在其他文件中对**_a.scss**进行@import时需要去除前面的下划线，即`@import a.scss`,并且在编译阶段会被一起编译到引入a文件的文件中去
-   
+
 7. classnames库的使用
 
    * 作用：动态生成class名
@@ -86,3 +86,13 @@
      * classNames('foo', { bar: true, duck: false }, 'baz', { quux: true }); // => 'foo bar baz quux'
 
      * classNames(null, false, 'bar', undefined, 0, 1, { baz: null }, ''); // => 'bar 1'
+
+8. a标签的点击事件禁用
+
+   ​	[资料链接](https://www.cnblogs.com/waisonlong/p/4872059.html)
+
+   * `pointer-events: none;`可以禁用鼠标点击事件，但是无法禁用键盘事件
+   * a标签不添加href属性可以禁用键盘事件
+
+9. 
+
