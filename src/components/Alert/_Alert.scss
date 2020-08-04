@@ -1,0 +1,33 @@
+.alert {
+    background-color: $primary;
+    border-radius: $alert-border-radius;
+    padding: $alert-padding-y $alert-padding-x;
+    border-width: $alert-border-width;
+    color: $white;
+    width: $alert-width;
+
+}
+
+.alert-header {
+    font-weight: $alert-title-font-weight;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.alert-body {
+    font-size: $alert-description-font-size;
+}
+
+.alert-disappear {
+    display: none;
+}
+
+.alert-close {
+    display: inline-block;
+    height: 1px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}

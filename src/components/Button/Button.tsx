@@ -1,30 +1,25 @@
 import React from 'react';
 import classNames from 'classnames';
+import { Type, Size } from '../../typings/typings';
 
-// 按钮大小的枚举
-export enum ButtonSize {
-  Large = 'lg',
-  Middle = 'md',
-  Small = 'sm',
-}
 // 按钮类型的枚举
-export enum ButtonType {
-  Primary = 'primary',
-  Danger = 'danger',
-  Link = 'link',
-  Default = 'default',
-}
+
 // 传入参数类型
 export interface IButtonProps {
   className?: string;
-  btnType?: string;
-  size?: string;
+  btnType?: Omit<Type, 'link'>;
+  size?: Size;
   href?: string;
   disabled?: boolean;
   children: React.ReactNode;
 }
-
-const Button: React.FC<IButtonProps> = (props) => {
+// button本身具备的attributes
+type NativeButtonAttributes = React.ButtonHTMLAttributes<HTMLElement>;
+type NativeAnchorAttributes = React.AnchorHTMLAttributes<HTMLElement>;
+type MixinButtonProps = Partial<
+  IButtonProps & NativeButtonAttributes & NativeAnchorAttributes
+>;
+const Button: React.FC<MixinButtonProps> = (props) => {
   // 对象解构获取传入参数
   const {
     className,
@@ -33,22 +28,23 @@ const Button: React.FC<IButtonProps> = (props) => {
     href,
     disabled = false,
     children,
+    ...restProps
   } = props;
   // 动态类名，初始化默认携带‘btn’这个类名
   const classnames = classNames('btn', className, {
     [`btn-${btnType}`]: btnType,
     [`btn-${size}`]: size,
-    disabled: btnType === ButtonType.Link && disabled,
+    disabled: btnType === 'link' && disabled,
   });
   // 根据btnType，确认要渲染的按钮类型，从而选择时button元素还是a元素
-  if (btnType === ButtonType.Link && href)
+  if (btnType === 'link' && href)
     return (
-      <a className={classnames} href={href}>
+      <a className={classnames} href={href} {...restProps}>
         {children}
       </a>
     );
   return (
-    <button className={classnames} disabled={disabled}>
+    <button className={classnames} disabled={disabled} {...restProps}>
       {children}
     </button>
   );

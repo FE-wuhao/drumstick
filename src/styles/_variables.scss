@@ -2,7 +2,7 @@
  * @Author: 吴灏
  * @Date: 2020-07-28 13:34:49
  * @LastEditors: 吴灏
- * @LastEditTime: 2020-07-28 13:50:19
+ * @LastEditTime: 2020-07-31 14:45:51
  * @Description: 公共sass变量的定义文件
  */
 
@@ -332,7 +332,7 @@ $alert-title-font-weight: $font-weight-bold !default;
 $alert-border-width: $border-width !default;
 $alert-description-font-size: $font-size-sm !default;
 $alert-description-top-margin: .3rem !default;
-
+$alert-width: 20rem !default;
 // Navs
 
 $nav-link-padding-y: .5rem !default;
