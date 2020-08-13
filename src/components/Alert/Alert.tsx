@@ -1,4 +1,4 @@
-import React, { useMemo, useState} from 'react';
+import React, { useMemo, useState } from 'react';
 import { Type, Size } from '../../typings/typings';
 import classNames from 'classnames';
 
@@ -15,13 +15,7 @@ type disappear = undefined | boolean;
 type IProps = Partial<IAlert>;
 
 const Alert: React.FC<IProps> = (props) => {
-  const {
-    title,
-    type = 'default',
-    size = 'sm',
-    content,
-    closeable = true,
-  } = props;
+  const { title, type, size, content, closeable } = props;
 
   const alertTitle = useMemo(() => title, [title]);
 
@@ -31,18 +25,16 @@ const Alert: React.FC<IProps> = (props) => {
 
   const alertSize = useMemo(() => size, [size]);
 
-  const [ disappear,setDisappear]=useState<disappear>(false);
+  const [disappear, setDisappear] = useState<disappear>(false);
 
   const styles = classNames(
     'alert',
     { [`alert-${alertType}`]: alertType },
     { [`alert-${alertSize}`]: alertSize },
-    { 'alert-disappear': disappear },
-    
+    { 'alert-disappear': disappear }
   );
 
   const close = classNames('alert-close', { uncloseable: !closeable });
-  
 
   return (
     <div className={styles}>
@@ -51,9 +43,7 @@ const Alert: React.FC<IProps> = (props) => {
         <span
           className={close}
           onClick={() => {
-            console.log('关闭按钮的onclick事件');
             setDisappear(true);
-            console.log(disappear);
           }}>
           x
         </span>
@@ -61,6 +51,12 @@ const Alert: React.FC<IProps> = (props) => {
       <div className='alert-body'>{alertContent}</div>
     </div>
   );
+};
+
+Alert.defaultProps = {
+  type: 'default',
+  size: 'sm',
+  closeable: true,
 };
 
 export default Alert;
