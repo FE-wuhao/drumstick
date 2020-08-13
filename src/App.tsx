@@ -37,7 +37,33 @@ function App() {
         title='这里是标题'
         type='success'
         size='lg'
-        content='here comes him'
+        content='success'
+      />
+      <br />
+      <br />
+      <Alert
+        title='这里是标题'
+        type='default'
+        size='lg'
+        content='default'
+      />
+      <br />
+      <br />
+      <Alert
+        title='这里是标题'
+        type='danger'
+        size='lg'
+        content='danger'
+        closeable={false}
+      />
+      <br />
+      <br />
+      <Alert
+        title='这里是标题'
+        type='warning'
+        size='lg'
+        content='warning'
+        closeable={false}
       />
     </div>
   );

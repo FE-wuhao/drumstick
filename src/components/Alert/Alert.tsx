@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState} from 'react';
 import { Type, Size } from '../../typings/typings';
 import classNames from 'classnames';
 
@@ -12,7 +12,9 @@ export interface IAlert {
 
 type disappear = undefined | boolean;
 
-const Alert: React.FC<Partial<IAlert>> = (props) => {
+type IProps = Partial<IAlert>;
+
+const Alert: React.FC<IProps> = (props) => {
   const {
     title,
     type = 'default',
@@ -29,25 +31,28 @@ const Alert: React.FC<Partial<IAlert>> = (props) => {
 
   const alertSize = useMemo(() => size, [size]);
 
-  let disappear: disappear = undefined;
+  const [ disappear,setDisappear]=useState<disappear>(false);
 
   const styles = classNames(
     'alert',
     { [`alert-${alertType}`]: alertType },
     { [`alert-${alertSize}`]: alertSize },
     { 'alert-disappear': disappear },
-    { closeable: closeable }
+    
   );
+
+  const close = classNames('alert-close', { uncloseable: !closeable });
+  
 
   return (
     <div className={styles}>
       <div className='alert-header'>
         <span>{alertTitle}</span>
         <span
-          className='alert-close'
+          className={close}
           onClick={() => {
             console.log('关闭按钮的onclick事件');
-            disappear = true;
+            setDisappear(true);
             console.log(disappear);
           }}>
           x
