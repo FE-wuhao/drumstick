@@ -4,6 +4,7 @@ import classNames from 'classnames';
 type Key = number ;
 
 type dir = 'horizontal' | 'vertical';
+type MenuCallback = (key: Key) => void;
 
 interface IOnSelect { 
   (key: Key) :void;
@@ -30,6 +31,8 @@ const Menu: React.FC<Partial<IMenu>> = (props) => {
   const { children, className, direction, defaultHighlightKey, onSelected } = props;
 
   const [key, setKey] = useState<Key>(defaultHighlightKey ? defaultHighlightKey:0);
+
+  const [currentKey, setCurrrentKey] = useState<Key>();
 
   const classes = classNames(className, `Menu-${direction}`);
 
