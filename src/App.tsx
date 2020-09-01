@@ -4,13 +4,18 @@ import './App.css';
 import './styles/index.scss';
 import Button from './components/Button/Button';
 import Alert from './components/Alert/Alert';
+import Menu from './components/Menu/Menu';
+import MenuItem from './components/Menu/MenuItem';
 
 function App() {
   return (
-    <div style={{ marginLeft: `10px` }}>
+    <div style={{ marginLeft: `20px`, marginRight: '20px' }}>
       <br />
       <br />
-      <Button btnType='default' disabled onClick={() => console.log('default')}>
+      <Button
+        btnType='default'
+        disabled
+        onClick={() => console.log('default')}>
         默认样式 disabled
       </Button>
       <br />
@@ -28,7 +33,10 @@ function App() {
       </Button>
       <br />
       <br />
-      <Button btnType='link' target='_blank' href='https://www.baidu.com/'>
+      <Button
+        btnType='link'
+        target='_blank'
+        href='https://www.baidu.com/'>
         link按钮
       </Button>
       <br />
@@ -65,6 +73,14 @@ function App() {
         content='warning'
         closeable={false}
       />
+      <br />
+      <br />
+      <Menu direction='vertical'>
+        <MenuItem index={1}>11111</MenuItem>
+        <MenuItem index={2}>22222</MenuItem>
+        <MenuItem index={3}>33333</MenuItem>
+        <MenuItem index={4}>44444</MenuItem>
+      </Menu>
     </div>
   );
 }

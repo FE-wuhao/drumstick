@@ -1,20 +1,26 @@
-import React, { useContext} from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
-import { IMenuItem,MenuContext} from './Menu'
+import { IMenuItem, MenuContext } from './Menu';
 
 const MenuItem: React.FC<IMenuItem> = (props) => {
-
-  const { key, disabled, onSelected,className } = props;
+  const { index, disabled, className, children } = props;
 
   const context = useContext(MenuContext);
 
-  const classes = classNames('menu-item', className, { 'is-disable': disabled, 'is-highlight': key === context.key})
+  const classes = classNames('menu-item', className, {
+    'is-disable': disabled,
+    'is-highlight': index === context.index,
+  });
 
-  const handleClick = () => { 
-    if(onSelected ) onSelected(key)
-  }
+  const handleClick = () => {
+    if (context.onSelected) context.onSelected(index);
+  };
 
-  return (<li className={classes} onClick={handleClick}></li>);
-}
+  return (
+    <li className={classes} onClick={handleClick}>
+      {children}
+    </li>
+  );
+};
 
 export default MenuItem;
